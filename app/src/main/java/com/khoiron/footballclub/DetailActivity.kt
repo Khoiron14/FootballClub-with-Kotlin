@@ -19,6 +19,13 @@ class DetailActivity : AppCompatActivity() {
 
         val item: FootballClub = intent.getParcelableExtra("item")
         detailActivityUI(item)
+
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     private fun detailActivityUI(item: FootballClub) {
