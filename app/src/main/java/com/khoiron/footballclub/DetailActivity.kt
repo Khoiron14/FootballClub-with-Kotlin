@@ -10,6 +10,10 @@ import org.jetbrains.anko.*
 
 class DetailActivity : AppCompatActivity() {
 
+    companion object {
+        val ITEM = "item"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
