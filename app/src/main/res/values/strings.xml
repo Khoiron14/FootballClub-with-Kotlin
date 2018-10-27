@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Football Club</string>
+
+    <string-array name="club_name">
+        <item>Barcelona FC</item>
+        <item>Real Madrid FC</item>
+        <item>Bayern Munchen FC</item>
+        <item>Manchester City FC</item>
+        <item>Manchester United FC</item>
+        <item>Chelsea FC</item>
+        <item>AC Milan FC</item>
+        <item>Arsenal FC</item>
+    </string-array>
+
+    <string-array name="club_description">
+        <item>Founded in 1899 by a group of Swiss, English and Catalan footballers led by Joan Gamper, the club has become a symbol of Catalan culture and Catalanism, hence the motto "Més que un club" ("More than a club")</item>
+        <item>Commonly known as Real Madrid, is a professional football club based in Madrid, Spain. Founded on 6 March 1902 as the Madrid Football Club, the club has traditionally worn a white home kit since inception</item>
+        <item>Commonly known as FC Bayern München, FCB, Bayern Munich, or FC Bayern, is a German sports club based in Munich, Bavaria (Bayern).</item>
+        <item>Manchester City Football Club is an English football club. The club is coached by Pep Guardiola and currently play in the English Premier League.</item>
+        <item>Manchester United F.C. is a football club that plays in the Premier League. They play their home games at Old Trafford which is in Greater Manchester.</item>
+        <item>Professional football club in London, England, that competes in the Premier League. Founded in 1905, the club\'s home ground since then has been Stamford Bridge.</item>
+        <item>A.C. Milan is an Italian football club in Milan. They were started in 1899 by two Englishmen, Herbet Kilpin and Alfred Edwards after a heavy drinking session in the Fiaschetteria Toscana tavern in Milan.</item>
+        <item>The club was founded in 1886 and was originally called Dial Square F.C. named after a sundial on the side of a factory. The team plays in a traditional red and white kit.</item>
+    </string-array>
+
+    <array name="club_image">
+        <item>@drawable/img_barca</item>
+        <item>@drawable/img_madrid</item>
+        <item>@drawable/img_bayern</item>
+        <item>@drawable/img_city</item>
+        <item>@drawable/img_mu</item>
+        <item>@drawable/img_chelsea</item>
+        <item>@drawable/img_acm</item>
+        <item>@drawable/img_arsenal</item>
+    </array>
+</resources>
