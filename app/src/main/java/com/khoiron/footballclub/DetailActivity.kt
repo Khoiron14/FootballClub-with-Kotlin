@@ -34,11 +34,8 @@ class DetailActivity : AppCompatActivity() {
 
             imageView {
                 item.image?.let { Picasso.get().load(it).into(this) }
-            }.lparams {
+            }.lparams(dip(150), dip(150)) {
                 gravity = Gravity.CENTER_HORIZONTAL
-                width = 200
-                height = 200
-
                 margin = dip(16)
             }
 
@@ -46,9 +43,7 @@ class DetailActivity : AppCompatActivity() {
                 text = item.name
                 textSize = 18f
                 textAlignment = View.TEXT_ALIGNMENT_CENTER
-            }.lparams {
-                width = matchParent
-                height = wrapContent
+            }.lparams(matchParent, wrapContent) {
                 bottomMargin = dip(16)
             }
 
