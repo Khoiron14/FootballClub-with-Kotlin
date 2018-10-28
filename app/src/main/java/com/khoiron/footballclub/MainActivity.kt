@@ -3,8 +3,13 @@ package com.khoiron.footballclub
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
+import com.khoiron.footballclub.models.FootballClub
+import com.khoiron.footballclub.views.FootballClubAdapter
+import org.jetbrains.anko.linearLayout
+import org.jetbrains.anko.matchParent
+import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.wrapContent
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,14 +17,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         initData()
-
-        club_list.layoutManager = LinearLayoutManager(this)
-        club_list.adapter = RecyclerViewAdapter(this, items) {
-            startActivity<DetailActivity>("item" to it)
-        }
+        mainActivityUI()
     }
 
     private fun initData() {
@@ -41,4 +41,16 @@ class MainActivity : AppCompatActivity() {
 
         image.recycle()
     }
+
+    private fun mainActivityUI() {
+        linearLayout {
+            recyclerView {
+                layoutManager = LinearLayoutManager(context)
+                adapter = FootballClubAdapter(context, items) {
+                    startActivity<DetailActivity>(DetailActivity.ITEM to it)
+                }
+            }.lparams(matchParent, wrapContent)
+        }
+    }
+
 }

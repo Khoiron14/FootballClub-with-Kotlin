@@ -1,4 +1,4 @@
-package com.khoiron.footballclub
+package com.khoiron.footballclub.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
