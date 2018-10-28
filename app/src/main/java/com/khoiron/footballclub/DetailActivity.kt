@@ -56,10 +56,7 @@ class DetailActivity : AppCompatActivity() {
                 text = item.description
                 textSize = 16f
                 textAlignment = View.TEXT_ALIGNMENT_CENTER
-            }.lparams {
-                width = matchParent
-                height = wrapContent
-            }
+            }.lparams(matchParent, wrapContent)
         }
     }
 }

@@ -10,11 +10,11 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_list.view.*
 
-class RecyclerViewAdapter(
+class FootballClubAdapter(
     private val context: Context,
     private val items: List<FootballClub>,
     private val listener: (FootballClub) -> Unit
-) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<FootballClubAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_list, parent, false))

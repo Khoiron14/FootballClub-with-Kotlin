@@ -45,13 +45,10 @@ class MainActivity : AppCompatActivity() {
         linearLayout {
             recyclerView {
                 layoutManager = LinearLayoutManager(context)
-                adapter = RecyclerViewAdapter(context, items) {
+                adapter = FootballClubAdapter(context, items) {
                     startActivity<DetailActivity>(DetailActivity.ITEM to it)
                 }
-            }.lparams {
-                width = matchParent
-                height = wrapContent
-            }
+            }.lparams(matchParent, wrapContent)
         }
     }
 
