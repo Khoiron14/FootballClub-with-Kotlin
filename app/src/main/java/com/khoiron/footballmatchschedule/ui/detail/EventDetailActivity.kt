@@ -13,6 +13,7 @@ import com.khoiron.footballmatchschedule.util.visible
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_event_detail.*
 import java.text.SimpleDateFormat
+import java.util.*
 
 class EventDetailActivity : AppCompatActivity(), DetailView {
     companion object {
@@ -45,7 +46,7 @@ class EventDetailActivity : AppCompatActivity(), DetailView {
     }
 
     override fun showEventDetailList(data: List<EventDetail>) {
-        val formatDate = SimpleDateFormat("EEE, dd MMM yyyy")
+        val formatDate = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
         txt_date.text = formatDate.format(data[0].eventDate)
         txt_home_name.text = data[0].homeTeamName
         txt_away_name.text = data[0].awayTeamName

@@ -8,6 +8,7 @@ import com.khoiron.footballmatchschedule.R
 import com.khoiron.footballmatchschedule.data.model.event.Event
 import kotlinx.android.synthetic.main.event_item.view.*
 import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by Khoiron14 on 20/11/18.
@@ -27,7 +28,7 @@ class LastMatchAdapter(private val events: List<Event>, private val listener: (E
 
 class LastMatchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bindItem(events: Event, listener: (Event) -> Unit) {
-        val formatDate = SimpleDateFormat("EEE, dd MMM yyyy")
+        val formatDate = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
         itemView.txt_date.text = formatDate.format(events.eventDate)
         itemView.txt_home_name.text = events.homeTeamName
         itemView.txt_away_name.text = events.awayTeamName
