@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat
 
 class EventDetailActivity : AppCompatActivity(), DetailView {
     companion object {
-        val EVENT_ID = "eventId"
+        const val EVENT_ID = "eventId"
     }
 
     private lateinit var presenter: EventDetailPresenter
