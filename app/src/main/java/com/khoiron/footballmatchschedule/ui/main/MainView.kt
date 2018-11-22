@@ -1,6 +1,6 @@
-package com.khoiron.footballmatchschedule.ui
+package com.khoiron.footballmatchschedule.ui.main
 
-import com.khoiron.footballmatchschedule.data.model.Event.Event
+import com.khoiron.footballmatchschedule.data.model.event.Event
 
 /**
  * Created by Khoiron14 on 20/11/18.

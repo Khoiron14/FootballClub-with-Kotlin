@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LastMatch.LastMatchFragment">
+    tools:context=".ui.lastmatch.LastMatchFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_event"

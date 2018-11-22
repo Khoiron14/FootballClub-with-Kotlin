@@ -1,12 +1,12 @@
-package com.khoiron.footballmatchschedule.ui
+package com.khoiron.footballmatchschedule.ui.main
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import com.khoiron.footballmatchschedule.R
-import com.khoiron.footballmatchschedule.ui.LastMatch.LastMatchFragment
-import com.khoiron.footballmatchschedule.ui.NextMatch.NextMatchFragment
+import com.khoiron.footballmatchschedule.ui.lastmatch.LastMatchFragment
+import com.khoiron.footballmatchschedule.ui.nextmatch.NextMatchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

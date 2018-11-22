@@ -1,4 +1,4 @@
-package com.khoiron.footballmatchschedule.data.model.Event
+package com.khoiron.footballmatchschedule.data.model.event
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -8,7 +8,6 @@ import java.util.*
 /**
  * Created by Khoiron14 on 20/11/18.
  */
-@Parcelize
 data class Event (
     @SerializedName("idEvent")
     var eventId : String? = null,
@@ -33,4 +32,4 @@ data class Event (
 
     @SerializedName("dateEvent")
     var eventDate : Date? = null
-    ) : Parcelable
+    )
