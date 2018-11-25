@@ -4,6 +4,13 @@
     <string name="next_match">Next Match</string>
     <string name="favorites">Favorites</string>
     <string name="vs">vs</string>
+    <string name="goals">Goals</string>
+    <string name="shots">Shots</string>
+    <string name="lineups">Lineups</string>
+    <string name="goal_keeper">Goal Keeper</string>
+    <string name="defense">Defense</string>
+    <string name="midfield">Midfield</string>
+    <string name="forward">Forward</string>
     <string name="temp_date">Tues, 20 Nov 2018</string>
     <string name="temp_score">0</string>
     <string name="temp_home_team">Home Team</string>

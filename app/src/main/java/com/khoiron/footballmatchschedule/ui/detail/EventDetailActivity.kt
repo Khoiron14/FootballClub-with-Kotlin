@@ -1,17 +1,28 @@
 package com.khoiron.footballmatchschedule.ui.detail
 
-import android.support.v7.app.AppCompatActivity
+import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import com.google.gson.Gson
 import com.khoiron.footballmatchschedule.R
+import com.khoiron.footballmatchschedule.R.id.add_to_favorite
+import com.khoiron.footballmatchschedule.R.menu.detail_menu
 import com.khoiron.footballmatchschedule.data.api.ApiRepository
+import com.khoiron.footballmatchschedule.data.database
+import com.khoiron.footballmatchschedule.data.model.event.Event
 import com.khoiron.footballmatchschedule.data.model.eventdetail.EventDetail
+import com.khoiron.footballmatchschedule.data.model.favorite.Favorite
 import com.khoiron.footballmatchschedule.data.model.team.Team
 import com.khoiron.footballmatchschedule.presenter.EventDetailPresenter
 import com.khoiron.footballmatchschedule.util.invisible
 import com.khoiron.footballmatchschedule.util.visible
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_event_detail.*
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.design.snackbar
+import org.jetbrains.anko.support.v4.onRefresh
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,7 +31,11 @@ class EventDetailActivity : AppCompatActivity(), DetailView {
         const val EVENT_ID = "eventId"
     }
 
+    private var menuItem: Menu? = null
+    private var isFavorite: Boolean = false
+
     private lateinit var presenter: EventDetailPresenter
+    private lateinit var events: Event
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +44,53 @@ class EventDetailActivity : AppCompatActivity(), DetailView {
         presenter = EventDetailPresenter(this, ApiRepository(), Gson())
         presenter.getEventDetail(intent.getStringExtra("eventId"))
 
+        swipe_refresh.onRefresh {
+            presenter.getEventDetail(intent.getStringExtra("eventId"))
+        }
+
+        supportActionBar?.title = "Match Detail"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(detail_menu, menu)
+        menuItem = menu
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            add_to_favorite -> {
+                addToFavorite()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun addToFavorite() {
+        try {
+            database.use {
+                insert(
+                    Favorite.TABLE_FAVORITE,
+                    Favorite.EVENT_ID to events.eventId,
+                    Favorite.HOME_TEAM_ID to events.homeTeamId,
+                    Favorite.AWAY_TEAM_ID to events.awayTeamId,
+                    Favorite.HOME_TEAM_NAME to events.homeTeamName,
+                    Favorite.AWAY_TEAM_NAME to events.awayTeamName,
+                    Favorite.HOME_SCORE to events.homeScore,
+                    Favorite.AWAY_SCORE to events.awayScore,
+                    Favorite.EVENT_DATE to events.eventDate.toString()
+                )
+            }
+            swipe_refresh.snackbar("Added to favorite").show()
+        } catch (e: SQLiteConstraintException) {
+            swipe_refresh.snackbar(e.localizedMessage).show()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -46,6 +107,17 @@ class EventDetailActivity : AppCompatActivity(), DetailView {
     }
 
     override fun showEventDetailList(data: List<EventDetail>) {
+        events = Event(
+            data[0].eventId,
+            data[0].homeTeamId,
+            data[0].awayTeamId,
+            data[0].homeTeamName,
+            data[0].awayTeamName,
+            data[0].homeScore,
+            data[0].awayScore,
+            data[0].eventDate
+        )
+        swipe_refresh.isRefreshing = false
         val formatDate = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
         txt_date.text = formatDate.format(data[0].eventDate)
         txt_home_name.text = data[0].homeTeamName
