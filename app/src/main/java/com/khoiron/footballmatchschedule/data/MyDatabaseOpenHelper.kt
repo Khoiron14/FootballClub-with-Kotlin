@@ -22,7 +22,8 @@ class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Favorit
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.createTable(Favorite.TABLE_FAVORITE, true,
+        db?.createTable(
+            Favorite.TABLE_FAVORITE, true,
             Favorite.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
             Favorite.EVENT_ID to TEXT + UNIQUE,
             Favorite.HOME_TEAM_ID to TEXT,
@@ -31,7 +32,8 @@ class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Favorit
             Favorite.AWAY_TEAM_NAME to TEXT,
             Favorite.HOME_SCORE to TEXT,
             Favorite.AWAY_SCORE to TEXT,
-            Favorite.EVENT_DATE to TEXT)
+            Favorite.EVENT_DATE to TEXT
+        )
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -40,4 +42,4 @@ class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Favorit
 }
 
 val Context.database: MyDatabaseOpenHelper
-get() = MyDatabaseOpenHelper.getInstance(applicationContext)
+    get() = MyDatabaseOpenHelper.getInstance(applicationContext)
