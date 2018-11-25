@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Football Match Schedule</string>
+    <string name="last_match">Prev. Match</string>
+    <string name="next_match">Next Match</string>
+    <string name="favorites">Favorites</string>
+    <string name="vs">vs</string>
+    <string name="temp_date">Tues, 20 Nov 2018</string>
+    <string name="temp_score">0</string>
+    <string name="temp_home_team">Home Team</string>
+    <string name="temp_away_team">Away Team</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
