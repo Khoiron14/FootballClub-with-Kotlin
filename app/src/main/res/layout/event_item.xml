@@ -1,72 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_margin="7dp"
+    app:cardCornerRadius="5dp">
 
-    <TextView
-        android:id="@+id/txt_date"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="7dp"
-        android:text="@string/temp_date"
-        android:textColor="@color/colorPrimary"
-        android:textSize="16sp" />
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/txt_vs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_date"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="16dp"
-        android:text="@string/vs"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="7dp"
+            android:text="@string/temp_date"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/txt_home_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_date"
-        android:layout_marginStart="24dp"
-        android:layout_toStartOf="@+id/txt_vs"
-        android:text="@string/temp_score"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txt_vs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_date"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="16dp"
+            android:text="@string/vs"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/txt_away_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_date"
-        android:layout_marginEnd="24dp"
-        android:layout_toEndOf="@+id/txt_vs"
-        android:text="@string/temp_score"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txt_home_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_date"
+            android:layout_marginStart="24dp"
+            android:layout_toStartOf="@+id/txt_vs"
+            android:text="@string/temp_score"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txt_home_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_date"
-        android:layout_toStartOf="@+id/txt_home_score"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="@string/temp_home_team"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/txt_away_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_date"
+            android:layout_marginEnd="24dp"
+            android:layout_toEndOf="@+id/txt_vs"
+            android:text="@string/temp_score"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/txt_away_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_date"
-        android:layout_toEndOf="@+id/txt_away_score"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="@string/temp_away_team"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/txt_home_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_date"
+            android:layout_toStartOf="@+id/txt_home_score"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/temp_home_team"
+            android:textSize="20sp" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/txt_away_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_date"
+            android:layout_toEndOf="@+id/txt_away_score"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/temp_away_team"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
