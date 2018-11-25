@@ -2,10 +2,12 @@ package com.khoiron.footballmatchschedule.ui.lastmatch
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import com.google.gson.Gson
 
 import com.khoiron.footballmatchschedule.R
@@ -17,6 +19,7 @@ import com.khoiron.footballmatchschedule.ui.main.MainView
 import com.khoiron.footballmatchschedule.util.invisible
 import com.khoiron.footballmatchschedule.util.visible
 import kotlinx.android.synthetic.main.fragment_last_match.*
+import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
 /**
@@ -29,6 +32,9 @@ class LastMatchFragment : Fragment(), MainView {
     private lateinit var presenter: LastMatchPresenter
     private lateinit var adapter: LastMatchAdapter
 
+    private lateinit var swipeRefresh: SwipeRefreshLayout
+    private lateinit var progressBar: ProgressBar
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,22 +46,24 @@ class LastMatchFragment : Fragment(), MainView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        progressBar = progress_bar
         presenter = LastMatchPresenter(this, ApiRepository(), Gson())
         presenter.getLastMatchList()
 
         adapter = LastMatchAdapter(events) {
             startActivity<EventDetailActivity>(EventDetailActivity.EVENT_ID to it.eventId)
         }
+
         list_event.layoutManager = LinearLayoutManager(activity)
         list_event.adapter = adapter
     }
 
     override fun showLoading() {
-        progress_bar.visible()
+        progressBar.visible()
     }
 
     override fun hideLoading() {
-        progress_bar.invisible()
+        progressBar.invisible()
     }
 
     override fun showEventList(data: List<Event>) {

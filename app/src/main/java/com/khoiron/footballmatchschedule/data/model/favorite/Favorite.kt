@@ -14,7 +14,7 @@ data class Favorite(
     val awayTeamName: String?,
     val homeScore: String?,
     val awayScore: String?,
-    val eventDate: Date?
+    val eventDate: String?
 ) {
     companion object {
         const val TABLE_FAVORITE: String = "TABLE_FAVORITE"
