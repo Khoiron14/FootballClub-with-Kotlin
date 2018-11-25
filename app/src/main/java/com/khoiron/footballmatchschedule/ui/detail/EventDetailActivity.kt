@@ -8,9 +8,9 @@ import android.view.Menu
 import android.view.MenuItem
 import com.google.gson.Gson
 import com.khoiron.footballmatchschedule.R
-import com.khoiron.footballmatchschedule.R.id.add_to_favorite
 import com.khoiron.footballmatchschedule.R.drawable.ic_add_to_favorites
 import com.khoiron.footballmatchschedule.R.drawable.ic_added_to_favorites
+import com.khoiron.footballmatchschedule.R.id.add_to_favorite
 import com.khoiron.footballmatchschedule.R.menu.detail_menu
 import com.khoiron.footballmatchschedule.data.api.ApiRepository
 import com.khoiron.footballmatchschedule.data.database
@@ -24,12 +24,11 @@ import com.khoiron.footballmatchschedule.util.visible
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_event_detail.*
 import org.jetbrains.anko.db.classParser
-import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.delete
+import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.toast
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -77,63 +76,16 @@ class EventDetailActivity : AppCompatActivity(), DetailView {
                 true
             }
             add_to_favorite -> {
-                if (isFavorite) removeFromFavorite() else addToFavorite()
+                if (this::events.isInitialized) {
+                    if (isFavorite) removeFromFavorite() else addToFavorite()
 
-                isFavorite = !isFavorite
-                setFavorite()
+                    isFavorite = !isFavorite
+                    setFavorite()
+                }
 
                 true
             }
             else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun favoriteState() {
-        database.use {
-            val result = select(Favorite.TABLE_FAVORITE)
-                .whereArgs("(EVENT_ID = {id})",
-                    "id" to id)
-            val favorite = result.parseList(classParser<Favorite>())
-            if (!favorite.isEmpty()) isFavorite = true
-        }
-    }
-
-    private fun setFavorite() {
-        if (isFavorite)
-            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_added_to_favorites)
-        else
-            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_add_to_favorites)
-    }
-
-    private fun addToFavorite() {
-        try {
-            database.use {
-                insert(
-                    Favorite.TABLE_FAVORITE,
-                    Favorite.EVENT_ID to events.eventId,
-                    Favorite.HOME_TEAM_ID to events.homeTeamId,
-                    Favorite.AWAY_TEAM_ID to events.awayTeamId,
-                    Favorite.HOME_TEAM_NAME to events.homeTeamName,
-                    Favorite.AWAY_TEAM_NAME to events.awayTeamName,
-                    Favorite.HOME_SCORE to events.homeScore,
-                    Favorite.AWAY_SCORE to events.awayScore,
-                    Favorite.EVENT_DATE to events.eventDate.toString()
-                )
-            }
-            swipe_refresh.snackbar("Added to favorite").show()
-        } catch (e: SQLiteConstraintException) {
-            swipe_refresh.snackbar(e.localizedMessage).show()
-        }
-    }
-
-    private fun removeFromFavorite() {
-        try {
-            database.use {
-                delete(Favorite.TABLE_FAVORITE, "(EVENT_ID = {id})", "id" to id)
-            }
-            swipe_refresh.snackbar("Removed to favorite").show()
-        } catch (e: SQLiteConstraintException) {
-            swipe_refresh.snackbar(e.localizedMessage).show()
         }
     }
 
@@ -191,5 +143,56 @@ class EventDetailActivity : AppCompatActivity(), DetailView {
 
     override fun showAwayTeam(data: List<Team>) {
         Picasso.get().load(data[0].teamBadge).into(img_away)
+    }
+
+    private fun favoriteState() {
+        database.use {
+            val result = select(Favorite.TABLE_FAVORITE)
+                .whereArgs(
+                    "(EVENT_ID = {id})",
+                    "id" to id
+                )
+            val favorite = result.parseList(classParser<Favorite>())
+            if (!favorite.isEmpty()) isFavorite = true
+        }
+    }
+
+    private fun setFavorite() {
+        if (isFavorite)
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_added_to_favorites)
+        else
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_add_to_favorites)
+    }
+
+    private fun addToFavorite() {
+        try {
+            database.use {
+                insert(
+                    Favorite.TABLE_FAVORITE,
+                    Favorite.EVENT_ID to events.eventId,
+                    Favorite.HOME_TEAM_ID to events.homeTeamId,
+                    Favorite.AWAY_TEAM_ID to events.awayTeamId,
+                    Favorite.HOME_TEAM_NAME to events.homeTeamName,
+                    Favorite.AWAY_TEAM_NAME to events.awayTeamName,
+                    Favorite.HOME_SCORE to events.homeScore,
+                    Favorite.AWAY_SCORE to events.awayScore,
+                    Favorite.EVENT_DATE to events.eventDate.toString()
+                )
+            }
+            swipe_refresh.snackbar("Added to favorite").show()
+        } catch (e: SQLiteConstraintException) {
+            swipe_refresh.snackbar(e.localizedMessage).show()
+        }
+    }
+
+    private fun removeFromFavorite() {
+        try {
+            database.use {
+                delete(Favorite.TABLE_FAVORITE, "(EVENT_ID = {id})", "id" to id)
+            }
+            swipe_refresh.snackbar("Removed to favorite").show()
+        } catch (e: SQLiteConstraintException) {
+            swipe_refresh.snackbar(e.localizedMessage).show()
+        }
     }
 }
