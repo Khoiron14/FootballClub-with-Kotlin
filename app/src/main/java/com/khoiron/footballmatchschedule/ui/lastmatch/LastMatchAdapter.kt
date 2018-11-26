@@ -16,27 +16,31 @@ import java.util.*
 class LastMatchAdapter(private val events: List<Event>, private val listener: (Event) -> Unit) :
     RecyclerView.Adapter<LastMatchViewHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): LastMatchViewHolder {
-        return LastMatchViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.event_item, p0, false))
+        val view: View = LayoutInflater.from(p0.context).inflate(R.layout.event_item, p0, false)
+        val result = LastMatchViewHolder(view)
+
+        view.setOnClickListener {
+            val event: Event = events[result.adapterPosition]
+            listener(event)
+        }
+
+        return result
     }
 
     override fun getItemCount(): Int = events.size
 
     override fun onBindViewHolder(p0: LastMatchViewHolder, p1: Int) {
-        p0.bindItem(events[p1], listener)
+        p0.bindItem(events[p1])
     }
 }
 
 class LastMatchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    fun bindItem(events: Event, listener: (Event) -> Unit) {
+    fun bindItem(events: Event) {
         val formatDate = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
         itemView.txt_date.text = formatDate.format(events.eventDate)
         itemView.txt_home_name.text = events.homeTeamName
         itemView.txt_away_name.text = events.awayTeamName
         itemView.txt_home_score.text = events.homeScore
         itemView.txt_away_score.text = events.awayScore
-
-        itemView.setOnClickListener {
-            listener(events)
-        }
     }
 }

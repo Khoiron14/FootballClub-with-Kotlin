@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import com.google.gson.Gson
-
 import com.khoiron.footballmatchschedule.R
 import com.khoiron.footballmatchschedule.data.api.ApiRepository
 import com.khoiron.footballmatchschedule.data.model.event.Event
@@ -19,7 +18,6 @@ import com.khoiron.footballmatchschedule.ui.main.MainView
 import com.khoiron.footballmatchschedule.util.invisible
 import com.khoiron.footballmatchschedule.util.visible
 import kotlinx.android.synthetic.main.fragment_last_match.*
-import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
 /**
@@ -32,7 +30,6 @@ class LastMatchFragment : Fragment(), MainView {
     private lateinit var presenter: LastMatchPresenter
     private lateinit var adapter: LastMatchAdapter
 
-    private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(

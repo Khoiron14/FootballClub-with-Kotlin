@@ -14,25 +14,30 @@ import kotlinx.android.synthetic.main.event_item.view.*
 class FavoriteMatchAdapter(private val favorites: List<Favorite>, private val listener: (Favorite) -> Unit) :
     RecyclerView.Adapter<FavoriteMatchViewHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): FavoriteMatchViewHolder {
-        return FavoriteMatchViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.event_item, p0, false))
+        val view: View = LayoutInflater.from(p0.context).inflate(R.layout.event_item, p0, false)
+        val result = FavoriteMatchViewHolder(view)
+
+        view.setOnClickListener {
+            val favorite: Favorite = favorites[result.adapterPosition]
+            listener(favorite)
+        }
+
+        return result
     }
 
     override fun getItemCount(): Int = favorites.size
 
     override fun onBindViewHolder(p0: FavoriteMatchViewHolder, p1: Int) {
-        p0.bindItem(favorites[p1], listener)
+        p0.bindItem(favorites[p1])
     }
 }
 
 class FavoriteMatchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    fun bindItem(favorites: Favorite, listener: (Favorite) -> Unit) {
+    fun bindItem(favorites: Favorite) {
         itemView.txt_date.text = favorites.eventDate
         itemView.txt_home_name.text = favorites.homeTeamName
         itemView.txt_away_name.text = favorites.awayTeamName
         itemView.txt_home_score.text = favorites.homeScore
         itemView.txt_away_score.text = favorites.awayScore
-        itemView.setOnClickListener {
-            listener(favorites)
-        }
     }
 }
