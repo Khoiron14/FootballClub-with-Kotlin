@@ -6,8 +6,9 @@ import com.khoiron.footballmatchschedule.data.api.TheSportDBApi
 import com.khoiron.footballmatchschedule.data.model.eventdetail.EventDetailResponse
 import com.khoiron.footballmatchschedule.data.model.team.TeamResponse
 import com.khoiron.footballmatchschedule.ui.detail.DetailView
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import com.khoiron.footballmatchschedule.util.context.CoroutinesContextProvider
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * Created by Khoiron14 on 21/11/18.
@@ -15,53 +16,44 @@ import org.jetbrains.anko.uiThread
 class EventDetailPresenter(
     private val view: DetailView,
     private val apiRepository: ApiRepository,
-    private val gson: Gson
+    private val gson: Gson,
+    private val context: CoroutinesContextProvider = CoroutinesContextProvider()
 ) {
     fun getEventDetail(eventId: String?) {
         view.showLoading()
-        doAsync {
+        GlobalScope.launch(context.main) {
             val data = gson.fromJson(
                 apiRepository
-                    .doRequest(TheSportDBApi.getEventDetail(eventId)),
+                    .doRequest(TheSportDBApi.getEventDetail(eventId)).await(),
                 EventDetailResponse::class.java
             )
 
-            uiThread {
-                view.hideLoading()
-                view.showEventDetailList(data.events)
-            }
+            view.showEventDetailList(data.events)
+            view.hideLoading()
         }
     }
 
     fun getHomeTeam(teamId: String?) {
-        view.showLoading()
-        doAsync {
+        GlobalScope.launch(context.main) {
             val data = gson.fromJson(
                 apiRepository
-                    .doRequest(TheSportDBApi.getTeam(teamId)),
+                    .doRequest(TheSportDBApi.getTeam(teamId)).await(),
                 TeamResponse::class.java
             )
 
-            uiThread {
-                view.hideLoading()
-                view.showHomeTeam(data.teams)
-            }
+            view.showHomeTeam(data.teams)
         }
     }
 
     fun getAwayTeam(teamId: String?) {
-        view.showLoading()
-        doAsync {
+        GlobalScope.launch(context.main) {
             val data = gson.fromJson(
                 apiRepository
-                    .doRequest(TheSportDBApi.getTeam(teamId)),
+                    .doRequest(TheSportDBApi.getTeam(teamId)).await(),
                 TeamResponse::class.java
             )
 
-            uiThread {
-                view.hideLoading()
-                view.showAwayTeam(data.teams)
-            }
+            view.showAwayTeam(data.teams)
         }
     }
 }
