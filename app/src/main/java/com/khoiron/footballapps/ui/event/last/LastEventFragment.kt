@@ -9,15 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ProgressBar
 import com.google.gson.Gson
 import com.khoiron.footballapps.R
 import com.khoiron.footballapps.data.api.ApiRepository
 import com.khoiron.footballapps.data.model.event.Event
 import com.khoiron.footballapps.presenter.event.LastEventPresenter
 import com.khoiron.footballapps.ui.event.EventView
-import com.khoiron.footballapps.util.invisible
-import com.khoiron.footballapps.util.visible
 import kotlinx.android.synthetic.main.fragment_last_event.*
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.toast
@@ -46,27 +43,27 @@ class LastEventFragment : Fragment(), EventView {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 when (position) {
                     0 -> {
-                        leagueId = spinner.selectedItem.toString().replace("English Premier League", "4328")
+                        leagueId = "4328"
                         presenter.getLastEventList(leagueId)
                     }
                     1 -> {
-                        leagueId = spinner.selectedItem.toString().replace("English League Championship", "4329")
+                        leagueId = "4329"
                         presenter.getLastEventList(leagueId)
                     }
                     2 -> {
-                        leagueId = spinner.selectedItem.toString().replace("German Bundesliga", "4331")
+                        leagueId = "4331"
                         presenter.getLastEventList(leagueId)
                     }
                     3 -> {
-                        leagueId = spinner.selectedItem.toString().replace("Italian Serie A", "4332")
+                        leagueId = "4332"
                         presenter.getLastEventList(leagueId)
                     }
                     4 -> {
-                        leagueId = spinner.selectedItem.toString().replace("French Ligue 1", "4334")
+                        leagueId = "4334"
                         presenter.getLastEventList(leagueId)
                     }
                     5 -> {
-                        leagueId = spinner.selectedItem.toString().replace("Spanish La Liga", "4335")
+                        leagueId = "4335"
                         presenter.getLastEventList(leagueId)
                     }
                 }
@@ -105,7 +102,6 @@ class LastEventFragment : Fragment(), EventView {
     }
 
     override fun showEventList(data: List<Event>) {
-        swipe_refresh.isRefreshing = false
         events.clear()
         events.addAll(data)
         adapter.notifyDataSetChanged()
