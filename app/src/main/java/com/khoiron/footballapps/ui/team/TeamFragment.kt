@@ -4,9 +4,8 @@ package com.khoiron.footballapps.ui.team
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.widget.SearchView
+import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.google.gson.Gson
@@ -26,9 +25,14 @@ import org.jetbrains.anko.support.v4.toast
 class TeamFragment : Fragment(), TeamView {
 
     private val teams: MutableList<Team> = mutableListOf()
+    private val filteredTeams: MutableList<Team> = mutableListOf()
     private var leagueName: String = "English Premier League"
     private lateinit var presenter: TeamPresenter
     private lateinit var adapter: TeamAdapter
+
+    init {
+        setHasOptionsMenu(true)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,7 +54,7 @@ class TeamFragment : Fragment(), TeamView {
         presenter = TeamPresenter(this, ApiRepository(), Gson())
         presenter.getTeamList(leagueName)
 
-        adapter = TeamAdapter(teams) {
+        adapter = TeamAdapter(filteredTeams) {
             toast(it.teamName.toString())
         }
 
@@ -60,6 +64,41 @@ class TeamFragment : Fragment(), TeamView {
         swipe_refresh.onRefresh {
             presenter.getTeamList(leagueName)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.main, menu)
+        val searchItem = menu?.findItem(R.id.menu_search)
+
+        if (searchItem != null) {
+            val searchView = searchItem.actionView as SearchView
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(p0: String?): Boolean = true
+
+                override fun onQueryTextChange(p0: String?): Boolean {
+                    if (p0!!.isNotEmpty()) {
+                        val search: String = p0.toLowerCase()
+
+                        filteredTeams.clear()
+                        teams.forEach {
+                            if (it.teamName!!.toLowerCase().contains(search)) {
+                                filteredTeams.add(it)
+                            }
+                        }
+                        adapter.notifyDataSetChanged()
+                    } else {
+                        filteredTeams.clear()
+                        filteredTeams.addAll(teams)
+                        adapter.notifyDataSetChanged()
+                    }
+
+                    return true
+                }
+
+            })
+        }
+
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onCreateView(
@@ -80,7 +119,9 @@ class TeamFragment : Fragment(), TeamView {
 
     override fun showTeamList(data: List<Team>) {
         teams.clear()
+        filteredTeams.clear()
         teams.addAll(data)
+        filteredTeams.addAll(data)
         adapter.notifyDataSetChanged()
     }
 }
