@@ -1,4 +1,4 @@
-package com.khoiron.footballapps.ui.main
+package com.khoiron.footballapps.ui.main.menu
 
 
 import android.os.Bundle

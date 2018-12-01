@@ -3,6 +3,28 @@
     <string name="title_matches">Matches</string>
     <string name="title_teams">Teams</string>
     <string name="title_favorites">Favorites</string>
+    <string name="title_vs">vs</string>
+    <string name="title_goals">Goals</string>
+    <string name="title_shots">Shots</string>
+    <string name="title_lineups">Lineups</string>
+    <string name="title_goal_keeper">Goal Keeper</string>
+    <string name="title_defense">Defense</string>
+    <string name="title_midfield">Midfield</string>
+    <string name="title_forward">Forward</string>
+    <string name="temp_date">Tues, 20 Nov 2018</string>
+    <string name="temp_time">00:00</string>
+    <string name="temp_score">0</string>
+    <string name="temp_home_team">Home Team</string>
+    <string name="temp_away_team">Away Team</string>
+
+    <array name="league_name">
+        <item>English Premier League</item>
+        <item>English League Championship</item>
+        <item>German Bundesliga</item>
+        <item>Italian Serie A</item>
+        <item>French Ligue 1</item>
+        <item>Spanish La Liga</item>
+    </array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

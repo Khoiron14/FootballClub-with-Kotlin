@@ -1,20 +1,18 @@
-package com.khoiron.footballapps.ui.main
+package com.khoiron.footballapps.ui.main.menu
 
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.khoiron.footballapps.R
-import com.khoiron.footballapps.presenter.event.LastEventPresenter
-import com.khoiron.footballapps.presenter.event.NextEventPresenter
-import com.khoiron.footballapps.ui.event.LastEventFragment
-import com.khoiron.footballapps.ui.event.NextEventFragment
+import com.khoiron.footballapps.ui.event.last.LastEventFragment
+import com.khoiron.footballapps.ui.event.next.NextEventFragment
+import com.khoiron.footballapps.ui.main.ViewPagerAdapter
 import kotlinx.android.synthetic.main.fragment_match.*
 
 /**
