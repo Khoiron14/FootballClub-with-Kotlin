@@ -3,9 +3,8 @@ package com.khoiron.footballapps.ui.event.next
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.widget.SearchView
+import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.google.gson.Gson
@@ -25,9 +24,14 @@ import org.jetbrains.anko.support.v4.toast
 class NextEventFragment : Fragment(), EventView {
 
     private val events: MutableList<Event> = mutableListOf()
+    private val filteredEvents: MutableList<Event> = mutableListOf()
     private var leagueId: String = "4328"
     private lateinit var presenter: NextEventPresenter
     private lateinit var adapter: NextEventAdapter
+
+    init {
+        setHasOptionsMenu(true)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -72,7 +76,7 @@ class NextEventFragment : Fragment(), EventView {
         presenter = NextEventPresenter(this, ApiRepository(), Gson())
         presenter.getNextEventList(leagueId)
 
-        adapter = NextEventAdapter(events) {
+        adapter = NextEventAdapter(filteredEvents) {
             toast(it.homeTeamName.toString())
         }
 
@@ -82,6 +86,41 @@ class NextEventFragment : Fragment(), EventView {
         swipe_refresh.onRefresh {
             presenter.getNextEventList(leagueId)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.main, menu)
+        val searchItem = menu?.findItem(R.id.menu_search)
+
+        if (searchItem != null) {
+            val searchView = searchItem.actionView as SearchView
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(p0: String?): Boolean = true
+
+                override fun onQueryTextChange(p0: String?): Boolean {
+                    if (p0!!.isNotEmpty()) {
+                        val search: String = p0.toLowerCase()
+
+                        filteredEvents.clear()
+                        events.forEach {
+                            if (it.homeTeamName!!.toLowerCase().contains(search) or it.awayTeamName!!.toLowerCase().contains(search)) {
+                                filteredEvents.add(it)
+                            }
+                        }
+                        adapter.notifyDataSetChanged()
+                    } else {
+                        filteredEvents.clear()
+                        filteredEvents.addAll(events)
+                        adapter.notifyDataSetChanged()
+                    }
+
+                    return true
+                }
+
+            })
+        }
+
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onCreateView(
@@ -102,7 +141,9 @@ class NextEventFragment : Fragment(), EventView {
 
     override fun showEventList(data: List<Event>) {
         events.clear()
+        filteredEvents.clear()
         events.addAll(data)
+        filteredEvents.addAll(data)
         adapter.notifyDataSetChanged()
     }
 }
