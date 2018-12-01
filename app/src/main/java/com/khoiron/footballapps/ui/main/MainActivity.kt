@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.khoiron.footballapps.R
 import com.khoiron.footballapps.R.id.*
-import com.khoiron.footballapps.ui.main.menu.FavoriteFragment
-import com.khoiron.footballapps.ui.main.menu.MatchFragment
-import com.khoiron.footballapps.ui.main.menu.TeamFragment
+import com.khoiron.footballapps.ui.favorite.FavoriteFragment
+import com.khoiron.footballapps.ui.event.EventFragment
+import com.khoiron.footballapps.ui.team.TeamFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container,
-                    MatchFragment(), MatchFragment::class.java.simpleName)
+                    EventFragment(), EventFragment::class.java.simpleName)
                 .commit()
         }
     }

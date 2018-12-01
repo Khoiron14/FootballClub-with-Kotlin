@@ -77,8 +77,8 @@ class LastEventFragment : Fragment(), EventView {
             toast(it.homeTeamName.toString())
         }
 
-        list_event.layoutManager = LinearLayoutManager(context)
-        list_event.adapter = adapter
+        list_team.layoutManager = LinearLayoutManager(context)
+        list_team.adapter = adapter
 
         swipe_refresh.onRefresh {
             presenter.getLastEventList(leagueId)

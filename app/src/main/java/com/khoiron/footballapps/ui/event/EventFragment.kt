@@ -1,4 +1,4 @@
-package com.khoiron.footballapps.ui.main.menu
+package com.khoiron.footballapps.ui.event
 
 
 import android.os.Bundle
@@ -13,13 +13,13 @@ import com.khoiron.footballapps.R
 import com.khoiron.footballapps.ui.event.last.LastEventFragment
 import com.khoiron.footballapps.ui.event.next.NextEventFragment
 import com.khoiron.footballapps.ui.main.ViewPagerAdapter
-import kotlinx.android.synthetic.main.fragment_match.*
+import kotlinx.android.synthetic.main.fragment_event.*
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class MatchFragment : Fragment() {
+class EventFragment : Fragment() {
 
     private var tabLayout: TabLayout? = null
     private var viewPage: ViewPager? = null
@@ -39,7 +39,7 @@ class MatchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_match, container, false)
+        return inflater.inflate(R.layout.fragment_event, container, false)
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
