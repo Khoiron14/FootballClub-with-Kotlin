@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.khoiron.footballapps.R
 import com.khoiron.footballapps.R.id.*
-import com.khoiron.footballapps.ui.favorite.FavoriteFragment
 import com.khoiron.footballapps.ui.event.EventFragment
+import com.khoiron.footballapps.ui.favorite.FavoriteFragment
 import com.khoiron.footballapps.ui.team.TeamFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -36,8 +36,10 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.main_container,
-                    EventFragment(), EventFragment::class.java.simpleName)
+                .replace(
+                    R.id.main_container,
+                    EventFragment(), EventFragment::class.java.simpleName
+                )
                 .commit()
         }
     }
@@ -46,8 +48,10 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.main_container,
-                    TeamFragment(), TeamFragment::class.java.simpleName)
+                .replace(
+                    R.id.main_container,
+                    TeamFragment(), TeamFragment::class.java.simpleName
+                )
                 .commit()
         }
     }
@@ -56,8 +60,10 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.main_container,
-                    FavoriteFragment(), FavoriteFragment::class.java.simpleName)
+                .replace(
+                    R.id.main_container,
+                    FavoriteFragment(), FavoriteFragment::class.java.simpleName
+                )
                 .commit()
         }
     }
