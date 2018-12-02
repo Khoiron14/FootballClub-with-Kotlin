@@ -3,7 +3,9 @@ package com.khoiron.footballapps.ui.event.last
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.view.*
 import android.widget.AdapterView
@@ -29,13 +31,16 @@ class LastEventFragment : Fragment(), EventView {
     private var leagueId: String = "4328"
     private lateinit var presenter: LastEventPresenter
     private lateinit var adapter: LastEventAdapter
-
-    init {
-        setHasOptionsMenu(true)
-    }
+    private lateinit var swipeRefresh: SwipeRefreshLayout
+    private lateinit var rListEvent: RecyclerView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setHasOptionsMenu(true)
+
+        swipeRefresh = swipe_refresh
+        rListEvent = list_event
 
         val spinnerItems = resources.getStringArray(R.array.league_name)
         val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, spinnerItems)
@@ -81,10 +86,10 @@ class LastEventFragment : Fragment(), EventView {
             toast(it.homeTeamName.toString())
         }
 
-        list_team.layoutManager = LinearLayoutManager(context)
-        list_team.adapter = adapter
+        rListEvent.layoutManager = LinearLayoutManager(context)
+       rListEvent.adapter = adapter
 
-        swipe_refresh.onRefresh {
+        swipeRefresh.onRefresh {
             presenter.getLastEventList(leagueId)
         }
     }
@@ -133,11 +138,11 @@ class LastEventFragment : Fragment(), EventView {
     }
 
     override fun showLoading() {
-        swipe_refresh.isRefreshing = true
+        swipeRefresh.isRefreshing = true
     }
 
     override fun hideLoading() {
-        swipe_refresh.isRefreshing = false
+        swipeRefresh.isRefreshing = false
     }
 
     override fun showEventList(data: List<Event>) {

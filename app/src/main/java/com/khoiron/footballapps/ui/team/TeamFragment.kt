@@ -3,7 +3,9 @@ package com.khoiron.footballapps.ui.team
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.view.*
 import android.widget.AdapterView
@@ -29,13 +31,16 @@ class TeamFragment : Fragment(), TeamView {
     private var leagueName: String = "English Premier League"
     private lateinit var presenter: TeamPresenter
     private lateinit var adapter: TeamAdapter
-
-    init {
-        setHasOptionsMenu(true)
-    }
+    private lateinit var swipeRefresh: SwipeRefreshLayout
+    private lateinit var rListTeam: RecyclerView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setHasOptionsMenu(true)
+
+        swipeRefresh = swipe_refresh
+        rListTeam = list_team
 
         val spinnerItems = resources.getStringArray(R.array.league_name)
         val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, spinnerItems)
@@ -58,10 +63,10 @@ class TeamFragment : Fragment(), TeamView {
             toast(it.teamName.toString())
         }
 
-        list_team.layoutManager = LinearLayoutManager(context)
-        list_team.adapter = adapter
+        rListTeam.layoutManager = LinearLayoutManager(context)
+        rListTeam.adapter = adapter
 
-        swipe_refresh.onRefresh {
+        swipeRefresh.onRefresh {
             presenter.getTeamList(leagueName)
         }
     }
@@ -110,11 +115,11 @@ class TeamFragment : Fragment(), TeamView {
     }
 
     override fun showLoading() {
-        swipe_refresh.isRefreshing = true
+        swipeRefresh.isRefreshing = true
     }
 
     override fun hideLoading() {
-        swipe_refresh.isRefreshing = false
+        swipeRefresh.isRefreshing = false
     }
 
     override fun showTeamList(data: List<Team>) {
