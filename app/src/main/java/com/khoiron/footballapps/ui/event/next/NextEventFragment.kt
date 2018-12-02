@@ -15,9 +15,10 @@ import com.khoiron.footballapps.data.api.ApiRepository
 import com.khoiron.footballapps.data.model.event.Event
 import com.khoiron.footballapps.presenter.event.NextEventPresenter
 import com.khoiron.footballapps.ui.event.EventView
+import com.khoiron.footballapps.ui.event.detail.EventDetailActivity
 import kotlinx.android.synthetic.main.fragment_next_event.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * A simple [Fragment] subclass.
@@ -82,7 +83,7 @@ class NextEventFragment : Fragment(), EventView {
         presenter.getNextEventList(leagueId)
 
         adapter = NextEventAdapter(filteredEvents) {
-            toast(it.homeTeamName.toString())
+            context?.startActivity<EventDetailActivity>("eventId" to "${it.eventId}")
         }
 
         rListEvent.layoutManager = LinearLayoutManager(context)
@@ -108,7 +109,10 @@ class NextEventFragment : Fragment(), EventView {
 
                         filteredEvents.clear()
                         events.forEach {
-                            if (it.homeTeamName!!.toLowerCase().contains(search) or it.awayTeamName!!.toLowerCase().contains(search)) {
+                            if (it.homeTeamName!!.toLowerCase().contains(search) or it.awayTeamName!!.toLowerCase().contains(
+                                    search
+                                )
+                            ) {
                                 filteredEvents.add(it)
                             }
                         }

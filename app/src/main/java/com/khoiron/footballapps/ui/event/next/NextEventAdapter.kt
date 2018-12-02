@@ -44,7 +44,7 @@ class NextEventViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bindItem(events: Event) {
         val formatDate = SimpleDateFormat("EEE, dd MMM yyyy", Locale.getDefault())
         val formatTime = SimpleDateFormat("HH:mm", Locale.getDefault())
-        val dateTimeConvert = convertDateTime(events.eventDate.toString(), events.eventTime)
+        val dateTimeConvert = convertDateTime(events.eventDate, events.eventTime)
 
         itemView.txt_date.text = formatDate.format(dateTimeConvert)
         itemView.txt_time.text = formatTime.format(dateTimeConvert)

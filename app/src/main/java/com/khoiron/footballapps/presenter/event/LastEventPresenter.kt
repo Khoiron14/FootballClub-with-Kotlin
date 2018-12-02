@@ -1,5 +1,6 @@
 package com.khoiron.footballapps.presenter.event
 
+import android.util.Log
 import com.google.gson.Gson
 import com.khoiron.footballapps.data.api.ApiRepository
 import com.khoiron.footballapps.data.api.TheSportDBApi

@@ -28,8 +28,8 @@ data class EventDetail(
     @SerializedName("intAwayScore")
     var awayScore: String? = null,
 
-    @SerializedName("strDate")
-    var eventDate: Date? = null,
+    @SerializedName("dateEvent")
+    var eventDate: String? = null,
 
     @SerializedName("strTime")
     var eventTime: String? = null,

@@ -16,9 +16,10 @@ import com.khoiron.footballapps.data.api.ApiRepository
 import com.khoiron.footballapps.data.model.event.Event
 import com.khoiron.footballapps.presenter.event.LastEventPresenter
 import com.khoiron.footballapps.ui.event.EventView
+import com.khoiron.footballapps.ui.event.detail.EventDetailActivity
 import kotlinx.android.synthetic.main.fragment_last_event.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * A simple [Fragment] subclass.
@@ -83,11 +84,11 @@ class LastEventFragment : Fragment(), EventView {
         presenter.getLastEventList(leagueId)
 
         adapter = LastEventAdapter(filteredEvents) {
-            toast(it.homeTeamName.toString())
+            context?.startActivity<EventDetailActivity>("eventId" to "${it.eventId}")
         }
 
         rListEvent.layoutManager = LinearLayoutManager(context)
-       rListEvent.adapter = adapter
+        rListEvent.adapter = adapter
 
         swipeRefresh.onRefresh {
             presenter.getLastEventList(leagueId)
@@ -109,7 +110,10 @@ class LastEventFragment : Fragment(), EventView {
 
                         filteredEvents.clear()
                         events.forEach {
-                            if (it.homeTeamName!!.toLowerCase().contains(search) or it.awayTeamName!!.toLowerCase().contains(search)) {
+                            if (it.homeTeamName!!.toLowerCase().contains(search) or it.awayTeamName!!.toLowerCase().contains(
+                                    search
+                                )
+                            ) {
                                 filteredEvents.add(it)
                             }
                         }
