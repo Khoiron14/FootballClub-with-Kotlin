@@ -48,6 +48,8 @@ class PlayerPresenterTest {
         MockitoAnnotations.initMocks(this)
         playerPresenter = PlayerPresenter(playerView, apiRepository, gson, TestContextProvider())
         playerDetailPresenter = PlayerDetailPresenter(playerDetailView, apiRepository, gson, TestContextProvider())
+        apiRepository = ApiRepository()
+        gson = Gson()
     }
 
     @Test
@@ -66,9 +68,7 @@ class PlayerPresenterTest {
 
             playerPresenter.getPlayerList(teamId)
 
-            Mockito.verify(playerView).showLoading()
             Mockito.verify(playerView).showPlayerList(players)
-            Mockito.verify(playerView).hideLoading()
         }
     }
 
@@ -88,9 +88,7 @@ class PlayerPresenterTest {
 
             playerDetailPresenter.getPlayerDetail(playerId)
 
-            Mockito.verify(playerDetailView).showLoading()
             Mockito.verify(playerDetailView).showPlayerDetail(players)
-            Mockito.verify(playerDetailView).hideLoading()
         }
     }
 }

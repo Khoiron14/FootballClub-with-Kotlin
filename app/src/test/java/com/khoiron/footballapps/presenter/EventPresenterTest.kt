@@ -55,6 +55,8 @@ class EventPresenterTest {
         lastEventPresenter = LastEventPresenter(eventView, apiRepository, gson, TestContextProvider())
         nextEventPresenter = NextEventPresenter(eventView, apiRepository, gson, TestContextProvider())
         eventDetailPresenter = EventDetailPresenter(eventDetailView, apiRepository, gson, TestContextProvider())
+        apiRepository = ApiRepository()
+        gson = Gson()
     }
 
     @Test

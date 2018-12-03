@@ -48,6 +48,8 @@ class TeamPresenterTest {
         MockitoAnnotations.initMocks(this)
         teamPresenter = TeamPresenter(teamView, apiRepository, gson, TestContextProvider())
         teamDetailPresenter = TeamDetailPresenter(teamDetailView, apiRepository, gson, TestContextProvider())
+        apiRepository = ApiRepository()
+        gson = Gson()
     }
 
     @Test
@@ -88,9 +90,7 @@ class TeamPresenterTest {
 
             teamDetailPresenter.getTeamDetail(teamId)
 
-            Mockito.verify(teamDetailView).showLoading()
             Mockito.verify(teamDetailView).showTeamDetail(teams)
-            Mockito.verify(teamDetailView).hideLoading()
         }
     }
 }
