@@ -7,14 +7,10 @@ import com.khoiron.footballapps.data.model.player.Player
 import com.khoiron.footballapps.data.model.player.PlayerDetail
 import com.khoiron.footballapps.data.model.player.PlayerDetailResponse
 import com.khoiron.footballapps.data.model.player.PlayerResponse
-import com.khoiron.footballapps.data.model.team.Team
-import com.khoiron.footballapps.data.model.team.TeamDetail
-import com.khoiron.footballapps.data.model.team.TeamDetailResponse
-import com.khoiron.footballapps.data.model.team.TeamResponse
 import com.khoiron.footballapps.presenter.player.PlayerDetailPresenter
 import com.khoiron.footballapps.presenter.player.PlayerPresenter
-import com.khoiron.footballapps.ui.player.PlayerDetailView
-import com.khoiron.footballapps.ui.player.PlayerView
+import com.khoiron.footballapps.ui.team.detail.player.PlayerDetailView
+import com.khoiron.footballapps.ui.team.detail.player.PlayerView
 import com.khoiron.footballapps.util.context.TestContextProvider
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

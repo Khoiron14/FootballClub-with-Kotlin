@@ -18,7 +18,6 @@ import com.khoiron.footballapps.data.model.event.EventDetail
 import com.khoiron.footballapps.data.model.favorite.FavoriteEvent
 import com.khoiron.footballapps.data.model.team.Team
 import com.khoiron.footballapps.presenter.event.EventDetailPresenter
-import com.khoiron.footballapps.ui.event.EventDetailView
 import com.khoiron.footballapps.util.convertDateTime
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_event_detail.*

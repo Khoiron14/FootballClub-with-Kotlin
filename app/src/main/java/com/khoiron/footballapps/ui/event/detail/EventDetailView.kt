@@ -1,4 +1,4 @@
-package com.khoiron.footballapps.ui.event
+package com.khoiron.footballapps.ui.event.detail
 
 import com.khoiron.footballapps.data.model.event.EventDetail
 import com.khoiron.footballapps.data.model.team.Team

@@ -11,14 +11,14 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.google.gson.Gson
-
 import com.khoiron.footballapps.R
 import com.khoiron.footballapps.data.api.ApiRepository
 import com.khoiron.footballapps.data.model.team.Team
 import com.khoiron.footballapps.presenter.team.TeamPresenter
+import com.khoiron.footballapps.ui.team.detail.TeamDetailActivity
 import kotlinx.android.synthetic.main.fragment_team.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * A simple [Fragment] subclass.
@@ -60,7 +60,7 @@ class TeamFragment : Fragment(), TeamView {
         presenter.getTeamList(leagueName)
 
         adapter = TeamAdapter(filteredTeams) {
-            toast(it.teamName.toString())
+            context?.startActivity<TeamDetailActivity>("teamId" to "${it.teamId}")
         }
 
         rListTeam.layoutManager = LinearLayoutManager(context)

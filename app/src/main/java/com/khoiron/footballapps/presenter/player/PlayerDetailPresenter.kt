@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.khoiron.footballapps.data.api.ApiRepository
 import com.khoiron.footballapps.data.api.TheSportDBApi
 import com.khoiron.footballapps.data.model.player.PlayerDetailResponse
-import com.khoiron.footballapps.ui.player.PlayerDetailView
+import com.khoiron.footballapps.ui.team.detail.player.PlayerDetailView
 import com.khoiron.footballapps.util.context.CoroutinesContextProvider
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

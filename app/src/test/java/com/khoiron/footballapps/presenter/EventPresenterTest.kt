@@ -12,7 +12,7 @@ import com.khoiron.footballapps.data.model.team.TeamResponse
 import com.khoiron.footballapps.presenter.event.EventDetailPresenter
 import com.khoiron.footballapps.presenter.event.LastEventPresenter
 import com.khoiron.footballapps.presenter.event.NextEventPresenter
-import com.khoiron.footballapps.ui.event.EventDetailView
+import com.khoiron.footballapps.ui.event.detail.EventDetailView
 import com.khoiron.footballapps.ui.event.EventView
 import com.khoiron.footballapps.util.context.TestContextProvider
 import kotlinx.coroutines.GlobalScope

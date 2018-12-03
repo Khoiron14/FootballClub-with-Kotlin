@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.khoiron.footballapps.data.api.ApiRepository
 import com.khoiron.footballapps.data.api.TheSportDBApi
 import com.khoiron.footballapps.data.model.team.TeamDetailResponse
-import com.khoiron.footballapps.ui.team.TeamDetailView
+import com.khoiron.footballapps.ui.team.detail.TeamDetailView
 import com.khoiron.footballapps.util.context.CoroutinesContextProvider
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -19,8 +19,6 @@ class TeamDetailPresenter(
     private val context: CoroutinesContextProvider = CoroutinesContextProvider()
 ) {
     fun getTeamDetail(teamId: String?) {
-        view.showLoading()
-
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
                 apiRepository.doRequest(TheSportDBApi.getTeamDetail(teamId)).await(),
@@ -28,7 +26,6 @@ class TeamDetailPresenter(
             )
 
             view.showTeamDetail(data.teams)
-            view.hideLoading()
         }
     }
 }

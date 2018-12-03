@@ -9,7 +9,7 @@ import com.khoiron.footballapps.data.model.team.TeamDetailResponse
 import com.khoiron.footballapps.data.model.team.TeamResponse
 import com.khoiron.footballapps.presenter.team.TeamDetailPresenter
 import com.khoiron.footballapps.presenter.team.TeamPresenter
-import com.khoiron.footballapps.ui.team.TeamDetailView
+import com.khoiron.footballapps.ui.team.detail.TeamDetailView
 import com.khoiron.footballapps.ui.team.TeamView
 import com.khoiron.footballapps.util.context.TestContextProvider
 import kotlinx.coroutines.GlobalScope

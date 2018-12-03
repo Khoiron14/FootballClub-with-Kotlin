@@ -1,12 +1,11 @@
 package com.khoiron.footballapps.presenter.event
 
-import android.util.Log
 import com.google.gson.Gson
 import com.khoiron.footballapps.data.api.ApiRepository
 import com.khoiron.footballapps.data.api.TheSportDBApi
 import com.khoiron.footballapps.data.model.event.EventDetailResponse
 import com.khoiron.footballapps.data.model.team.TeamResponse
-import com.khoiron.footballapps.ui.event.EventDetailView
+import com.khoiron.footballapps.ui.event.detail.EventDetailView
 import com.khoiron.footballapps.util.context.CoroutinesContextProvider
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

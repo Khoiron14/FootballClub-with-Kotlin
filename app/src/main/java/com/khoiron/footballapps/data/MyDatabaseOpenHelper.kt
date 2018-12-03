@@ -3,6 +3,7 @@ package com.khoiron.footballapps.data
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.khoiron.footballapps.data.model.favorite.FavoriteEvent
+import com.khoiron.footballapps.data.model.favorite.FavoriteTeam
 import org.jetbrains.anko.db.*
 
 /**
@@ -35,10 +36,19 @@ class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Favorit
             FavoriteEvent.EVENT_DATE to TEXT,
             FavoriteEvent.EVENT_TIME to TEXT
         )
+
+        db?.createTable(
+            FavoriteTeam.TABLE_TEAM_FAVORITE, true,
+            FavoriteTeam.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            FavoriteTeam.TEAM_ID to TEXT + UNIQUE,
+            FavoriteTeam.TEAM_NAME to TEXT,
+            FavoriteTeam.TEAM_BADGE to TEXT
+        )
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.dropTable(FavoriteEvent.TABLE_EVENT_FAVORITE, true)
+        db?.dropTable(FavoriteTeam.TABLE_TEAM_FAVORITE, true)
     }
 }
 

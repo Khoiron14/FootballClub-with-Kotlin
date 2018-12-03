@@ -1,4 +1,4 @@
-package com.khoiron.footballapps.ui.player
+package com.khoiron.footballapps.ui.team.detail.player
 
 import com.khoiron.footballapps.data.model.player.PlayerDetail
 
