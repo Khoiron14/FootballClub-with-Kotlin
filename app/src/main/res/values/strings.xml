@@ -12,6 +12,8 @@
     <string name="title_defense">Defense</string>
     <string name="title_midfield">Midfield</string>
     <string name="title_forward">Forward</string>
+    <string name="title_weight">Weight (Kg)</string>
+    <string name="title_height">Height (m)</string>
 
     <string name="temp_date">Tues, 20 Nov 2018</string>
     <string name="temp_time">00:00</string>
@@ -21,6 +23,10 @@
     <string name="temp_team_name">Team Name</string>
     <string name="temp_team_formed_year">2018</string>
     <string name="temp_team_stadium">Stadium</string>
+    <string name="temp_player_name">Player Name</string>
+    <string name="temp_player_position">Position</string>
+    <string name="temp_player_weight">00.00</string>
+    <string name="temp_player_height">0.00</string>
 
     <array name="league_name">
         <item>English Premier League</item>

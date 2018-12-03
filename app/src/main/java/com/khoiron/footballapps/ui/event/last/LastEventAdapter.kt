@@ -52,5 +52,6 @@ class LastEventViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.txt_away_name.text = events.awayTeamName
         itemView.txt_home_score.text = events.homeScore
         itemView.txt_away_score.text = events.awayScore
+        itemView.btn_notification.visibility = View.GONE
     }
 }

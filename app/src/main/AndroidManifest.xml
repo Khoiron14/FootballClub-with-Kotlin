@@ -24,6 +24,7 @@
         <activity
             android:name=".ui.team.detail.TeamDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.team.detail.player.PlayerDetailActivity"></activity>
     </application>
 
 </manifest>

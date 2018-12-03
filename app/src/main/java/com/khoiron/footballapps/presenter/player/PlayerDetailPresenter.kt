@@ -19,8 +19,6 @@ class PlayerDetailPresenter(
     private val context: CoroutinesContextProvider = CoroutinesContextProvider()
 ) {
     fun getPlayerDetail(playerId: String?) {
-        view.showLoading()
-
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(
                 apiRepository.doRequest(TheSportDBApi.getPlayerDetail(playerId)).await(),
@@ -28,7 +26,6 @@ class PlayerDetailPresenter(
             )
 
             view.showPlayerDetail(data.players)
-            view.hideLoading()
         }
     }
 }
