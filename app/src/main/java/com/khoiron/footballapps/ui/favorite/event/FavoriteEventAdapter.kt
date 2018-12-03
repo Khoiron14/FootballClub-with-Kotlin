@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import com.khoiron.footballapps.R
 import com.khoiron.footballapps.data.model.favorite.FavoriteEvent
 import com.khoiron.footballapps.util.convertDateTime
+import com.khoiron.footballapps.util.gone
+import com.khoiron.footballapps.util.invisible
 import kotlinx.android.synthetic.main.item_event.view.*
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
 
 /**
@@ -50,5 +53,7 @@ class FavoriteEventViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.txt_away_name.text = favorites.awayTeamName
         itemView.txt_home_score.text = favorites.homeScore
         itemView.txt_away_score.text = favorites.awayScore
+
+        if (dateTimeConvert!!.before(Date())) itemView.btn_notification.gone()
     }
 }

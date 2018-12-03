@@ -1,5 +1,6 @@
 package com.khoiron.footballapps.ui.event.next
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import com.khoiron.footballapps.R
 import com.khoiron.footballapps.data.model.event.Event
 import com.khoiron.footballapps.util.convertDateTime
 import kotlinx.android.synthetic.main.item_event.view.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import java.text.SimpleDateFormat
 import java.util.*
 

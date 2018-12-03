@@ -15,6 +15,10 @@ fun View.invisible() {
     visibility = View.INVISIBLE
 }
 
+fun View.gone() {
+    visibility = View.GONE
+}
+
 fun convertDateTime(date: String?, time: String?): Date? {
     val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
     format.timeZone = TimeZone.getTimeZone("UTC")

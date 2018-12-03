@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.khoiron.footballapps.R
 import com.khoiron.footballapps.data.model.event.Event
 import com.khoiron.footballapps.util.convertDateTime
+import com.khoiron.footballapps.util.gone
 import kotlinx.android.synthetic.main.item_event.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -52,6 +53,6 @@ class LastEventViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.txt_away_name.text = events.awayTeamName
         itemView.txt_home_score.text = events.homeScore
         itemView.txt_away_score.text = events.awayScore
-        itemView.btn_notification.visibility = View.GONE
+        itemView.btn_notification.gone()
     }
 }
