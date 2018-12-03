@@ -48,8 +48,6 @@ class PlayerPresenterTest {
         MockitoAnnotations.initMocks(this)
         playerPresenter = PlayerPresenter(playerView, apiRepository, gson, TestContextProvider())
         playerDetailPresenter = PlayerDetailPresenter(playerDetailView, apiRepository, gson, TestContextProvider())
-        apiRepository = ApiRepository()
-        gson = Gson()
     }
 
     @Test

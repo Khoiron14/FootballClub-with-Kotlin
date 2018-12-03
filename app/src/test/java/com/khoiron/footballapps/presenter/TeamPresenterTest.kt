@@ -48,8 +48,6 @@ class TeamPresenterTest {
         MockitoAnnotations.initMocks(this)
         teamPresenter = TeamPresenter(teamView, apiRepository, gson, TestContextProvider())
         teamDetailPresenter = TeamDetailPresenter(teamDetailView, apiRepository, gson, TestContextProvider())
-        apiRepository = ApiRepository()
-        gson = Gson()
     }
 
     @Test
