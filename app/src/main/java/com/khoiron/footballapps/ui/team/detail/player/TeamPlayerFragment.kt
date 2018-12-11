@@ -33,7 +33,7 @@ class TeamPlayerFragment : Fragment(), PlayerView {
 
         rListPlayer = list_player
 
-        id = activity?.intent!!.getStringExtra("teamId")
+        id = activity?.intent?.getStringExtra("teamId") ?: ""
 
         presenter = PlayerPresenter(this, ApiRepository(), Gson())
         presenter.getPlayerList(id)

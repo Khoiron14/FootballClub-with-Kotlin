@@ -25,7 +25,7 @@ class TeamDetailOverviewFragment : Fragment(), TeamDetailView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        id = activity?.intent!!.getStringExtra("teamId")
+        id = activity?.intent?.getStringExtra("teamId") ?: ""
 
         presenter = TeamDetailPresenter(this, ApiRepository(), Gson())
         presenter.getTeamDetail(id)
